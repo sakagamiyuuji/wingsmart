@@ -6,6 +6,7 @@ import androidx.room.RoomDatabase.Callback
 import androidx.sqlite.db.SupportSQLiteDatabase
 import com.test.wingsmart.data.local.database.AppDatabase
 import com.test.wingsmart.data.local.database.dao.ProductDao
+import com.test.wingsmart.data.local.database.dao.TransactionDao
 import com.test.wingsmart.data.local.database.dao.UserDao
 import com.test.wingsmart.data.model.WingsUser
 import com.test.wingsmart.data.model.source.UserData
@@ -50,7 +51,9 @@ class DatabaseModule {
     @Singleton
     @Provides
     fun provideUserDao(@Named(QUALIFIER_APP_DATABASE) database: AppDatabase): UserDao {
-        database.userDao().saveUser(UserData.populateUserData())
+        CoroutineScope(Dispatchers.IO).launch {
+            database.userDao().saveUser(UserData.populateUserData())
+        }
         return database.userDao()
     }
 
@@ -58,5 +61,11 @@ class DatabaseModule {
     @Provides
     fun provideProductDao(@Named(QUALIFIER_APP_DATABASE) database: AppDatabase): ProductDao {
         return database.productDao()
+    }
+
+    @Singleton
+    @Provides
+    fun provideTransactionDao(@Named(QUALIFIER_APP_DATABASE) database: AppDatabase): TransactionDao {
+        return database.transactionDao()
     }
 }

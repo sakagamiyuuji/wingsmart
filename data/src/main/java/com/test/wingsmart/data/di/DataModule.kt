@@ -5,11 +5,14 @@ import com.test.wingsmart.data.local.preferences.Preferences
 import com.test.wingsmart.data.local.preferences.PreferencesHelper
 import com.test.wingsmart.data.repository.LoginDataRepository
 import com.test.wingsmart.data.repository.ProductDataRepository
+import com.test.wingsmart.data.repository.TransactionDataRepository
 import com.test.wingsmart.data.source.login.LoginLocalDataSource
 import com.test.wingsmart.data.source.product.ProductDataSource
 import com.test.wingsmart.data.source.product.ProductLocalDataSource
+import com.test.wingsmart.data.source.transaction.TransactionLocalDataSource
 import com.test.wingsmart.domain.repository.LoginRepository
 import com.test.wingsmart.domain.repository.ProductRepository
+import com.test.wingsmart.domain.repository.TransactionRepository
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -38,6 +41,12 @@ class DataModule {
     fun provideProductRepository(
         productLocalDataSource: ProductLocalDataSource
     ): ProductRepository = ProductDataRepository(productLocalDataSource)
+
+    @Provides
+    @Singleton
+    fun provideTransactionRepository(
+        transactionLocalDataSource: TransactionLocalDataSource
+    ): TransactionRepository = TransactionDataRepository(transactionLocalDataSource)
 
 
 }

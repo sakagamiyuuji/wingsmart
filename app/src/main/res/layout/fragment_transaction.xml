@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:fillViewport="true"
+    android:clipChildren="false"
+    android:clipToPadding="false"
+    android:padding="@dimen/dimens_20dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:clipChildren="false"
+        android:clipToPadding="false">
+        
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/raleway_bold"
+            android:textSize="@dimen/dimens_24dp"
+            android:text="CHECKOUT"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginBottom="@dimen/dimens_24dp"/>
+
+        <TextView
+            android:id="@+id/tv_transaction_amount"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/raleway_semibold"
+            android:textSize="@dimen/dimens_24dp"
+            android:text="Total: Rp. 0"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginBottom="@dimen/dimens_20dp"/>
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rv_product"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:clipChildren="false"
+            android:clipToPadding="false"
+            android:nestedScrollingEnabled="false"
+            tools:itemCount="2"
+            tools:listitem="@layout/item_product_transaction" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btn_confirm"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingHorizontal="@dimen/dimens_16dp"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="@dimen/dimens_16dp"
+            android:background="@drawable/rounded_green_2bc990_20dp"
+            android:text="Confirm" />
+    </LinearLayout>
+
+</androidx.core.widget.NestedScrollView>

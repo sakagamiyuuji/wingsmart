@@ -31,11 +31,14 @@ data class WingsProduct(
     val dimension: String? = null,
 
     @ColumnInfo(name = "unit")
-    val unit: String? = null
+    val unit: String? = null,
+
+    @ColumnInfo(name= "qty")
+    val qty: Int? = null
 ): ModelEntity<Product> {
     override fun mapToEntity(): Product {
         return Product(
-            id, productCode, productName, price, currency, discountPercentage, dimension, unit
+            id, productCode, productName, price, currency, discountPercentage, dimension, unit, qty
         )
     }
 }

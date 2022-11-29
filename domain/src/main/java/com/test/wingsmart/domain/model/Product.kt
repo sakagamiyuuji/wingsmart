@@ -13,5 +13,6 @@ data class Product(
     val currency: String? = null,
     val discountPercentage: Int? = null,
     val dimension: String? = null,
-    val unit: String? = null
+    val unit: String? = null,
+    val qty: Int? = null
 ) : Parcelable

@@ -1,5 +1,6 @@
 package com.test.wingsmart.app.feature.transaction
 
+import android.graphics.Paint
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -38,9 +39,12 @@ class TransactionFragment : BaseFragment<FragmentTransactionBinding>() {
 
         with(binding) {
             var totalAmount: Long = 0
-            transaction?.products?.forEach {
-                val productAfterDiscount = it.price?.times((it.discountPercentage ?: 1))
-                val productAmount = productAfterDiscount?.times(it.qty ?: -1) ?: 0
+            transaction?.products?.forEach { data ->
+                var productAmount: Long = 0
+                if (data.discountPercentage != null) {
+                    val discount = data.price?.div(100)?.times(data.discountPercentage!!)
+                    productAmount = data.price?.minus(discount ?: 0) ?: 0
+                } else productAmount = data.price?.times(data.qty ?: 0) ?: 0
                 totalAmount += productAmount
             }
             tvTransactionAmount.text = totalAmount.toRupiahString(true, withSuffix = true)

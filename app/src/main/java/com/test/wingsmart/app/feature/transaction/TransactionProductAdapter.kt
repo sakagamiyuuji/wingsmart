@@ -54,7 +54,13 @@ class TransactionProductAdapter() : BaseBindingAdapter<BaseBindingViewHolder>() 
         with(bind) {
             tvProductName.text = data.productName
             tvProductQty.text = data.qty.toString()
-            tvTotalProductPrice.text = data.price.let { it?.times(data.qty ?: -1) }?.toRupiahString()
+
+            var productAmount: Long = 0
+            if (data.discountPercentage != null) {
+                val discount = data.price?.div(100)?.times(data.discountPercentage!!)
+                productAmount = data.price?.minus(discount ?: 0) ?: 0
+            } else productAmount = data.price?.times(data.qty ?: 0) ?: 0
+            tvTotalProductPrice.text = productAmount.toRupiahString()
         }
 
     }

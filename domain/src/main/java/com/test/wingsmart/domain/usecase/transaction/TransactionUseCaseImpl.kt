@@ -12,6 +12,10 @@ class TransactionUseCaseImpl @Inject constructor(
         return repository.getPendingTransaction()
     }
 
+    override suspend fun getAllTransaction(): List<Transaction> {
+        return repository.getAllTransaction()
+    }
+
     override suspend fun updatePendingTransaction(transaction: Transaction, isSuccess: Boolean) {
         repository.updatePendingTransaction(transaction, isSuccess)
     }

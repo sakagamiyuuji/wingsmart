@@ -4,5 +4,6 @@ import com.test.wingsmart.domain.model.Transaction
 
 interface TransactionRepository {
     suspend fun getPendingTransaction(): Transaction?
+    suspend fun getAllTransaction(): List<Transaction>
     suspend fun updatePendingTransaction(transaction: Transaction, isSuccess: Boolean = false)
 }

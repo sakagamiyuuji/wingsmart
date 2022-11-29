@@ -1,13 +1,8 @@
 package com.test.wingsmart.data.source.transaction
 
-import com.test.wingsmart.data.local.database.dao.ProductDao
 import com.test.wingsmart.data.local.database.dao.TransactionDao
-import com.test.wingsmart.data.local.database.dao.UserDao
 import com.test.wingsmart.data.local.preferences.Preferences
-import com.test.wingsmart.data.model.WingsProduct
 import com.test.wingsmart.data.model.WingsTransaction
-import com.test.wingsmart.domain.model.Product
-import com.test.wingsmart.domain.model.Transaction
 import javax.inject.Inject
 
 class TransactionLocalDataSource @Inject constructor(
@@ -21,7 +16,13 @@ class TransactionLocalDataSource @Inject constructor(
         } else null
     }
 
+    override suspend fun getAllTransaction(): List<WingsTransaction> {
+        return transactionDao.transactions
+    }
+
     override suspend fun updatePendingTransaction(transaction: WingsTransaction) {
-        transactionDao.updateTransaction(transaction)
+        if (transactionDao.transactions.isEmpty()) {
+            transactionDao.addTransaction(transaction)
+        } else transactionDao.updateTransaction(transaction)
     }
 }

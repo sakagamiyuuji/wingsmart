@@ -16,6 +16,7 @@ class ProductAdapter() : BaseBindingAdapter<BaseBindingViewHolder>() {
 
     var listItems = mutableListOf<Product>()
     var onClick: ((product: Product) -> Unit)? = null
+    var onBuy: ((product: Product) -> Unit)? = null
 
     @SuppressLint("NotifyDataSetChanged")
     fun addItems(list: List<Product>) {
@@ -53,12 +54,14 @@ class ProductAdapter() : BaseBindingAdapter<BaseBindingViewHolder>() {
         with(bind) {
             tvProductName.text = data.productName
             tvProductPrice.text = data.price?.toRupiahString()
-            tvProductDiscount.text = data.discountPercentage?.let { discount ->
+            if (data.discountPercentage != null) {
                 tvProductPrice.paintFlags = tvProductPrice.paintFlags or Paint.STRIKE_THRU_TEXT_FLAG
-                ((data.price?.div(100))?.times(discount))?.toRupiahString()
+                val discount = data.price?.div(100)?.times(data.discountPercentage!!)
+                tvProductDiscount.text = (data.price?.minus(discount ?: 0))?.toRupiahString()
             }
             btnBuy.setOnClickListener {
-                context.showToast("Coming Soon")
+                //context.showToast("Coming Soon")
+                onBuy?.invoke(data)
             }
         }
 

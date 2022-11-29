@@ -2,6 +2,7 @@ package com.test.wingsmart.data.repository
 
 import com.test.wingsmart.data.model.WingsProduct
 import com.test.wingsmart.data.model.WingsTransaction
+import com.test.wingsmart.data.model.mapToEntityList
 import com.test.wingsmart.data.source.transaction.TransactionLocalDataSource
 import com.test.wingsmart.domain.model.Transaction
 import com.test.wingsmart.domain.repository.ProductRepository
@@ -13,6 +14,10 @@ class TransactionDataRepository(
 
     override suspend fun getPendingTransaction(): Transaction? {
         return local.getPendingTransaction()?.mapToEntity()
+    }
+
+    override suspend fun getAllTransaction(): List<Transaction> {
+        return local.getAllTransaction().mapToEntityList()
     }
 
     override suspend fun updatePendingTransaction(transaction: Transaction, isSuccess: Boolean) {
@@ -27,7 +32,8 @@ class TransactionDataRepository(
                     currency = it.currency,
                     discountPercentage = it.discountPercentage,
                     dimension = it.dimension,
-                    it.unit
+                    unit = it.unit,
+                    qty = it.qty
                 )
             )
         }
@@ -39,7 +45,7 @@ class TransactionDataRepository(
             total = transaction.total,
             date = transaction.date,
             products = listProduct,
-            isSuccess = isSuccess
+            isSuccess = isSuccess,
         ))
     }
 }

@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/blue_0A0171"
+    android:gravity="center"
+    android:orientation="vertical"
+    android:padding="@dimen/dimens_20dp"
+    tools:context=".feature.login.LoginActivity">
+
+
+    <ImageView
+        android:layout_width="180dp"
+        android:layout_height="160dp"
+        android:src="@drawable/img_login"
+        android:layout_marginBottom="40dp"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/raleway_bold"
+        android:text="Welcome Back"
+        android:textColor="@color/white"
+        android:textSize="20sp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/raleway"
+        android:layout_marginTop="16dp"
+        android:text="Please login to your existing account"
+        android:textColor="@color/white"
+        android:textSize="16sp" />
+
+    <EditText
+        android:id="@+id/et_username"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textColor="@color/white"
+        android:hint="Username"
+        android:textColorHint="@color/white"
+        android:layout_marginTop="@dimen/dimens_24dp"
+        android:padding="@dimen/dimens_20dp"
+        android:background="@drawable/rounded_white_20dp"/>
+
+    <EditText
+        android:id="@+id/et_password"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textColor="@color/white"
+        android:hint="Password"
+        android:textColorHint="@color/white"
+        android:layout_marginTop="@dimen/dimens_16dp"
+        android:padding="@dimen/dimens_20dp"
+        android:background="@drawable/rounded_white_20dp"/>
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/btn_login"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="@dimen/dimens_20dp"
+        android:layout_marginTop="@dimen/dimens_24dp"
+        android:background="@drawable/rounded_green_2bc990_20dp"
+        android:text="Login"
+        android:textColor="@color/white"/>
+
+</LinearLayout>

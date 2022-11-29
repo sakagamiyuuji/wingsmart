@@ -29,18 +29,6 @@ class LoginFragment : BaseFragment<FragmentLoginBinding>() {
     private fun initUiCallback() {
         with(binding) {
             btnLogin.setOnClickListener {
-//                if (etUsername.text.toString().isEmpty() || etPassword.text.toString().isEmpty()) {
-//                    requireContext().showToast("Mohon masukan username/password\n" +
-//                            "Username: admin\n" +
-//                            "Password: 1234")
-//                }
-//                if (etUsername.text.toString() == "admin" && etPassword.text.toString() == "1234") {
-//                    HomeActivity.launchIntent(requireContext())
-//                } else {
-//                    requireContext().showToast("Username/Password Salah\n" +
-//                            "Username: admin\n" +
-//                            "Password: 1234")
-//                }
                 viewModel.login(
                     etUsername.text.toString(),
                     etPassword.text.toString()
@@ -51,12 +39,15 @@ class LoginFragment : BaseFragment<FragmentLoginBinding>() {
 
     fun configureViewModel() {
         viewModel.loginLiveData.observe(viewLifecycleOwner) {
-            if (it!=null) {
+            if (it != null) {
                 if (it == true) {
                     Toast.makeText(requireContext(), "Success Login", Toast.LENGTH_SHORT).show()
                     HomeActivity.launchIntent(requireContext())
-                }
-                else Toast.makeText(requireContext(), "Username/Password Salah", Toast.LENGTH_SHORT).show()
+                } else requireContext().showToast(
+                    "Username/Password Salah\n" +
+                            "Username: admin\n" +
+                            "Password: 1234"
+                )
             }
         }
     }

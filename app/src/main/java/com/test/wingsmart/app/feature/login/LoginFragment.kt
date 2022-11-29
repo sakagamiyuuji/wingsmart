@@ -29,22 +29,22 @@ class LoginFragment : BaseFragment<FragmentLoginBinding>() {
     private fun initUiCallback() {
         with(binding) {
             btnLogin.setOnClickListener {
-                if (etUsername.text.toString().isEmpty() || etPassword.text.toString().isEmpty()) {
-                    requireContext().showToast("Mohon masukan username/password\n" +
-                            "Username: admin\n" +
-                            "Password: 1234")
-                }
-                if (etUsername.text.toString() == "admin" && etPassword.text.toString() == "1234") {
-                    HomeActivity.launchIntent(requireContext())
-                } else {
-                    requireContext().showToast("Username/Password Salah\n" +
-                            "Username: admin\n" +
-                            "Password: 1234")
-                }
-//                viewModel.login(
-//                    etUsername.text.toString(),
-//                    etPassword.text.toString()
-//                )
+//                if (etUsername.text.toString().isEmpty() || etPassword.text.toString().isEmpty()) {
+//                    requireContext().showToast("Mohon masukan username/password\n" +
+//                            "Username: admin\n" +
+//                            "Password: 1234")
+//                }
+//                if (etUsername.text.toString() == "admin" && etPassword.text.toString() == "1234") {
+//                    HomeActivity.launchIntent(requireContext())
+//                } else {
+//                    requireContext().showToast("Username/Password Salah\n" +
+//                            "Username: admin\n" +
+//                            "Password: 1234")
+//                }
+                viewModel.login(
+                    etUsername.text.toString(),
+                    etPassword.text.toString()
+                )
             }
         }
     }

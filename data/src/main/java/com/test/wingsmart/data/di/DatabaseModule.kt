@@ -2,18 +2,26 @@ package com.test.wingsmart.data.di
 
 import android.content.Context
 import androidx.room.Room
+import androidx.room.RoomDatabase.Callback
+import androidx.sqlite.db.SupportSQLiteDatabase
 import com.test.wingsmart.data.local.database.AppDatabase
 import com.test.wingsmart.data.local.database.dao.ProductDao
 import com.test.wingsmart.data.local.database.dao.UserDao
 import com.test.wingsmart.data.model.WingsUser
+import com.test.wingsmart.data.model.source.UserData
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.android.qualifiers.ApplicationContext
 import dagger.hilt.components.SingletonComponent
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import javax.inject.Named
 import javax.inject.Singleton
+import kotlin.coroutines.CoroutineContext
+import kotlin.coroutines.coroutineContext
 
 @Module
 @InstallIn(SingletonComponent::class)
@@ -31,7 +39,7 @@ class DatabaseModule {
             return Room.databaseBuilder(context, AppDatabase::class.java, "wingsmart_db")
                 .allowMainThreadQueries()
                 .fallbackToDestructiveMigration()
-                .createFromAsset("database/user.db")
+                //.createFromAsset("database/user.db")
                 .createFromAsset("database/products.db")
                 .build()
         } catch (e: Exception) {
@@ -42,6 +50,7 @@ class DatabaseModule {
     @Singleton
     @Provides
     fun provideUserDao(@Named(QUALIFIER_APP_DATABASE) database: AppDatabase): UserDao {
+        database.userDao().saveUser(UserData.populateUserData())
         return database.userDao()
     }
 

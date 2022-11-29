@@ -10,7 +10,7 @@ import com.test.wingsmart.data.model.WingsUser
 interface UserDao {
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    suspend fun saveUser(user: WingsUser)
+    fun saveUser(user: WingsUser)
 
     @get:Query("SELECT * FROM user")
     val user: WingsUser

@@ -1,5 +1,7 @@
 package com.test.wingsmart.app.feature.product
 
+import android.app.Activity
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -31,7 +33,10 @@ class ProductDetailFragment : BaseFragment<FragmentProductDetailBinding>(){
             tvPrice.text = product?.price?.toRupiahString()
             tvUnit.text = product?.unit
             btnBuy.setOnClickListener {
-                requireContext().showToast("Coming Soon")
+                val resultIntent = Intent()
+                resultIntent.putExtra(KEY_PRODUCT_DETAIL_RESULT, product)
+                activity?.setResult(Activity.RESULT_OK, resultIntent)
+                activity?.finish()
             }
         }
 
@@ -43,6 +48,8 @@ class ProductDetailFragment : BaseFragment<FragmentProductDetailBinding>(){
 
     companion object {
         const val KEY_PRODUCT = "KEY_PRODUCT"
+        const val KEY_PRODUCT_DETAIL_RESULT = "KEY_PRODUCT_DETAIL_RESULT"
+        const val KEY_PRODUCT_DETAIL_REQUEST_CODE = 1001
         fun newInstance(): ProductDetailFragment = ProductDetailFragment()
     }
 

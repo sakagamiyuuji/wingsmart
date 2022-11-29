@@ -4,6 +4,7 @@ import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
+import androidx.fragment.app.Fragment
 import com.test.wingsmart.app.databinding.ActivityHomeBinding
 import com.test.wingsmart.app.databinding.ActivityProductDetailBinding
 import com.test.wingsmart.app.feature.login.LoginFragment
@@ -38,6 +39,16 @@ class ProductDetailActivity: BaseActivity<ActivityProductDetailBinding>() {
             val intent = Intent(context, ProductDetailActivity::class.java)
             intent.putExtra(KEY_PRODUCT, product)
             context.startActivity(intent)
+        }
+
+        fun launchIntentForResultFromFragment(
+            fragment: Fragment,
+            requestCode: Int,
+            product: Product
+        ) {
+            val intent = Intent(fragment.requireContext(), ProductDetailActivity::class.java)
+            intent.putExtra(KEY_PRODUCT, product)
+            fragment.startActivityForResult(intent, requestCode)
         }
     }
 }

@@ -12,5 +12,5 @@ data class Transaction(
     var total: Long? = null,
     val date: String? = null,
     var products: List<Product>? = null,
-    var isSuccess: Boolean? = null
+    var isSuccess: Boolean? = false
 ) : Parcelable

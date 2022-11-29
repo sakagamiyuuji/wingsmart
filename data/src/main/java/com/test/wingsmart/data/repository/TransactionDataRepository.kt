@@ -45,7 +45,7 @@ class TransactionDataRepository(
             total = transaction.total,
             date = transaction.date,
             products = listProduct,
-            isSuccess = isSuccess,
+            isSuccess = transaction.isSuccess,
         ))
     }
 }

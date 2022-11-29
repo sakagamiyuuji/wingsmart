@@ -35,6 +35,15 @@
             android:layout_marginTop="@dimen/dimens_16dp"
             android:background="@drawable/selector_button_green_39baa3_4dp"
             android:text="Checkout" />
+
+        <TextView
+            android:id="@+id/tv_count_item_selected"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/raleway_bold"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="@dimen/dimens_8dp"
+            android:text="0 Item Selected"/>
     </LinearLayout>
 
 

@@ -33,7 +33,7 @@ data class WingsTransaction(
     val products: List<WingsProduct>? = null,
 
     @ColumnInfo(name = "is_success")
-    val isSuccess: Boolean? = null
+    val isSuccess: Boolean? = false
 ): ModelEntity<Transaction> {
     override fun mapToEntity(): Transaction {
         return Transaction(

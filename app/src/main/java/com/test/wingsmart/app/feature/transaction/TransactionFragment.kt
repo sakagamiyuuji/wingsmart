@@ -53,6 +53,8 @@ class TransactionFragment : BaseFragment<FragmentTransactionBinding>() {
                 transaction?.total = totalAmount
                 transaction?.isSuccess = true
                 transaction?.let { trx -> viewModel.updateTransaction(trx) }
+                requireContext().showToast("Success confirm product")
+                activity?.finish()
             }
 
         }

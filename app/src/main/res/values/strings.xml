@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">WingsMart</string>
+
+    <string name="total_selected_item">%d item selected</string>
 </resources>

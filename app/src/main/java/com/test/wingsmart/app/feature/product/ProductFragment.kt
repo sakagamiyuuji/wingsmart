@@ -8,6 +8,7 @@ import android.view.LayoutInflater
 import android.view.View
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.test.wingsmart.app.R
 import com.test.wingsmart.app.databinding.FragmentProductBinding
 import com.test.wingsmart.app.feature.transaction.TransactionActivity
 import com.test.wingsmart.app.feature.transaction.TransactionViewModel
@@ -85,7 +86,11 @@ class ProductFragment : BaseFragment<FragmentProductBinding>() {
                     currentActiveTransaction?.products = temp
                 }
             }
-            requireContext().showToast("Product Added")
+            var totalItem = 0
+            currentActiveTransaction?.products?.forEach { p ->
+                p.qty?.let { qty -> totalItem += qty}
+            }
+            binding.tvCountItemSelected.text = getString(R.string.total_selected_item, totalItem)
         }
         binding.rvProduct.adapter = adapter
     }
@@ -107,7 +112,13 @@ class ProductFragment : BaseFragment<FragmentProductBinding>() {
             if (!it.isNullOrEmpty()) {
                 val lastNumber = it[it.lastIndex].documentNumber?.toIntOrNull()
                 if (it.isNotEmpty()) {
-                    currentActiveTransaction = it.firstOrNull { data -> data.isSuccess == false }
+                    val isExist = it.firstOrNull { data -> data.isSuccess == false }
+                    currentActiveTransaction = isExist
+                    var totalItem = 0
+                    currentActiveTransaction?.products?.forEach { p ->
+                        p.qty?.let { qty -> totalItem += qty}
+                    }
+                    binding.tvCountItemSelected.text = getString(R.string.total_selected_item, totalItem)
                     latestTransactionNumber = lastNumber.toString()
                 } else {
                     if (lastNumber != null) {
@@ -161,6 +172,11 @@ class ProductFragment : BaseFragment<FragmentProductBinding>() {
                                 currentActiveTransaction?.products = temp
                             }
                         }
+                        var totalItem = 0
+                        currentActiveTransaction?.products?.forEach { p ->
+                            p.qty?.let { qty -> totalItem += qty}
+                        }
+                        binding.tvCountItemSelected.text = getString(R.string.total_selected_item, totalItem)
                     }
 
                     requireContext().showToast("Product Added")
@@ -168,6 +184,11 @@ class ProductFragment : BaseFragment<FragmentProductBinding>() {
                 }
             }
         }
+    }
+
+    override fun onResume() {
+        super.onResume()
+        transactionViewModel.getAllTransaction()
     }
 
     companion object {

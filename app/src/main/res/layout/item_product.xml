@@ -46,7 +46,7 @@
             android:layout_height="wrap_content"
             android:text="BUY"
             android:layout_marginTop="@dimen/dimens_8dp"
-            android:background="@drawable/rounded_green_2bc990_20dp"
+            android:background="@drawable/selector_button_green_39baa3_4dp"
             android:padding="@dimen/dimens_4dp"
             android:minHeight="@dimen/dimens_0dp"
             />

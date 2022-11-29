@@ -33,7 +33,7 @@
             android:paddingHorizontal="@dimen/dimens_16dp"
             android:layout_gravity="center_horizontal"
             android:layout_marginTop="@dimen/dimens_16dp"
-            android:background="@drawable/rounded_green_2bc990_20dp"
+            android:background="@drawable/selector_button_green_39baa3_4dp"
             android:text="Checkout" />
     </LinearLayout>
 

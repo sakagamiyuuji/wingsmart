@@ -2,6 +2,9 @@
 <resources>
     <color name="blue_0A0171">#0A0171</color>
     <color name="green_2BC990">#2BC990</color>
+    <color name="green_39BAA3">#39BAA3</color>
+    <color name="green_009A7E">#009A7E</color>
+    <color name="disabled_color">#C4C4C4</color>
 
     <color name="white">#FFFFFF</color>
     <color name="black">#000000</color>

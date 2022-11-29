@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item android:state_enabled="false" android:drawable="@drawable/rounded_gray_disabled_4dp"/>
+    <item android:state_pressed="false" android:drawable="@drawable/rounded_green_39baa3_4dp"/>
+    <item android:state_pressed="true" android:drawable="@drawable/rounded_green_dark_4dp"/>
+    <item android:state_enabled="true" android:drawable="@drawable/rounded_green_39baa3_4dp"/>
+
+    <item android:drawable="@drawable/rounded_green_39baa3_4dp"/>
+</selector>

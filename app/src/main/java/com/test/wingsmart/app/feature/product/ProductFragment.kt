@@ -68,6 +68,7 @@ class ProductFragment : BaseFragment<FragmentProductBinding>() {
                 )
             } else {
                 val latestProduct = currentActiveTransaction?.products
+                //find is product exist
                 val existProduct =
                     latestProduct?.firstOrNull { prod -> it.productCode == prod.productCode }
                 if (existProduct != null) {
